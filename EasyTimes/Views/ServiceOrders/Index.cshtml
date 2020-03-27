@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                <p></p>
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.SerialCode)
             </th>
             <th>
@@ -33,6 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <a asp-action="ViewDetails" asp-route-id="@item.id">View task details!</a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SerialCode)
             </td>

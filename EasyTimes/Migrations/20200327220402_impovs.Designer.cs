@@ -4,14 +4,16 @@ using EasyTimes.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EasyTimes.Migrations
 {
     [DbContext(typeof(EasyTimesContext))]
-    partial class EasyTimesContextModelSnapshot : ModelSnapshot
+    [Migration("20200327220402_impovs")]
+    partial class impovs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -9,6 +9,12 @@ using EasyTimes.Models;
 
 namespace EasyTimes.Controllers
 {
+    //Fazer método de seed para carregar um user genérico.
+
+    //Está tudo funcional, só falta criar uma viewmodel para fazer a edição separadamente em grupos
+    //de atributos, e não tudo de uma vez, como está sendo feito agora.
+
+
     public class OwnersController : Controller
     {
         private readonly EasyTimesContext _context;
@@ -68,6 +74,7 @@ namespace EasyTimes.Controllers
         // GET: Owners/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            id = 1;
             if (id == null)
             {
                 return NotFound();

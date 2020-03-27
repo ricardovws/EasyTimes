@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
+using EasyTimes.Services;
 
 namespace EasyTimes
 {
@@ -38,7 +39,7 @@ namespace EasyTimes
 
             services.AddDbContext<EasyTimesContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("EasyTimesContext")));
-
+            services.AddScoped<ServiceOrderService>();
      
         }
 

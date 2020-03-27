@@ -148,5 +148,26 @@ namespace EasyTimes.Controllers
         {
             return _context.ServiceOrder.Any(e => e.id == id);
         }
+
+        public IActionResult ViewDetails(int id)
+        {
+            var order = _context.ServiceOrder.Where(o => o.id == id).First();
+            return View(order);
+
+
+        }
+        public IActionResult AddWorkload(int id, DateTime start, DateTime end)
+        {
+            var workload = end.Subtract(start).TotalHours;
+
+            TempData["start"] = start.ToString();
+            TempData["end"] = end.ToString();
+            
+            var order = _context.ServiceOrder.Where(s => s.id == id).First();
+            order.AmountOfHours += workload;
+            _context.Update(order);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(ViewDetails), new { id=id});
+        }
     }
 }

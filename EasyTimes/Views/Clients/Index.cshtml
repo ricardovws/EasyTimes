@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                <p></p>
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -30,6 +33,10 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <a asp-action="StartAService" asp-route-id="@item.id">Start!</a> 
+             
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

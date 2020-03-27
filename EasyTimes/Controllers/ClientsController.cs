@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
+using EasyTimes.Services;
+using EasyTimes.Models.ViewModels;
 
 namespace EasyTimes.Controllers
 {
@@ -13,10 +15,15 @@ namespace EasyTimes.Controllers
     {
         private readonly EasyTimesContext _context;
 
-        public ClientsController(EasyTimesContext context)
+        private readonly ServiceOrderService _serviceOrderService;
+
+        public ClientsController(EasyTimesContext context, ServiceOrderService serviceOrderService)
         {
             _context = context;
+            _serviceOrderService = serviceOrderService;
         }
+
+
 
         // GET: Clients
         public async Task<IActionResult> Index()
@@ -147,6 +154,31 @@ namespace EasyTimes.Controllers
         private bool ClientExists(int id)
         {
             return _context.Client.Any(e => e.id == id);
+        }
+
+
+        //GET
+        public IActionResult StartAService()
+        {
+            StartAServiceViewModel startAServiceViewModel = new StartAServiceViewModel();
+            return View(startAServiceViewModel);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult StartAService(int id, StartAServiceViewModel startAServiceViewModel)
+        {
+            ServiceOrder serviceOrder = new ServiceOrder();
+            serviceOrder.SerialCode = DateTime.Now.GetHashCode().ToString(); 
+            serviceOrder.ClientID = id;
+            serviceOrder.ProjectName = startAServiceViewModel.ProjectName;
+            serviceOrder.Comments = startAServiceViewModel.Comments;
+            
+
+            _serviceOrderService.StartAService(serviceOrder);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
