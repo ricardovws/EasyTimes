@@ -19,9 +19,10 @@ namespace EasyTimes.Controllers
         }
 
         // GET: Owners
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Owner.ToListAsync());
+           return View(_context.Owner.FirstOrDefault(x => x.Name != null));
+           
         }
 
         // GET: Owners/Details/5
