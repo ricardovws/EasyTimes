@@ -1,0 +1,49 @@
+﻿@model EasyTimes.Models.Charger
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Charger</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Start_" class="control-label"></label>
+                <input asp-for="Start_" class="form-control" />
+                <span asp-validation-for="Start_" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="End_" class="control-label"></label>
+                <input asp-for="End_" class="form-control" />
+                <span asp-validation-for="End_" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hours_" class="control-label"></label>
+                <input asp-for="Hours_" class="form-control" />
+                <span asp-validation-for="Hours_" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OnTheRanch" class="control-label"></label>
+                <input asp-for="OnTheRanch" class="form-control" />
+                <span asp-validation-for="OnTheRanch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

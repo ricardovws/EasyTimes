@@ -1,0 +1,66 @@
+﻿@model EasyTimes.Models.Owner
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Owner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bank)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Agency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Agency)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentAccount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentAccount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePerHour)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PricePerHour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GasPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GasPrice)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

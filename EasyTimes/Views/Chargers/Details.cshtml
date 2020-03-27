@@ -1,0 +1,42 @@
+﻿@model EasyTimes.Models.Charger
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Charger</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Start_)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Start_)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.End_)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.End_)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours_)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hours_)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OnTheRanch)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OnTheRanch)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
