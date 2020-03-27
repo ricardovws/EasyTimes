@@ -19,5 +19,6 @@ namespace EasyTimes.Models
         //Prices and Costs
         public double PricePerHour { get; set; } //How much you earn per hour
         public double GasPrice { get; set; } //Price paid for the gasoline
+        public double OvertimeProfitRate { get; set; } //Percentual that will increase you salary. 
     }
 }

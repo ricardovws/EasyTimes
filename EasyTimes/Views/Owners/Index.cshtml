@@ -8,7 +8,7 @@
 
 
 <div class="col-md-6">
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Personal data</h3>
         </div>
@@ -27,13 +27,19 @@
             <b></b>
             @Html.DisplayFor(modelItem => Model.Phone)
         </div>
+        <div class="panel-body">
+            <div class="col-md-offset-11">
+                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+            </div>
+        </div>
     </div>
+   
 </div>
 
 
 
 <div class="col-md-6">
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Banking account data</h3>
         </div>
@@ -52,6 +58,11 @@
             <b></b>
             @Html.DisplayFor(modelItem => Model.CurrentAccount)
         </div>
+        <div class="panel-body">
+            <div class="col-md-offset-11">
+                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -59,17 +70,42 @@
     <div class="col-md-4">
         <div class="list-group">
             <a href="#" class="list-group-item active">
-                Cras justo odio
+                Prices and Costs
             </a>
             <a href="#" class="list-group-item">
-                Dapibus ac facilisis in
+                Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
             </a>
             <a href="#" class="list-group-item">
-                Morbi leo risus
+                Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
             </a>
+            <a href="#" class="list-group-item">
+                Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+            </a>
+        </div>
+        <div class="col-md-offset-11">
+            <a href="#" class="btn btn-primary btn-xs">Edit</a>
         </div>
     </div>
 </div>
+
+@*<div class="row">
+    <div class="col-md-offset-8">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                Prices and Costs
+            </a>
+            <a href="#" class="list-group-item">
+                Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
+            </a>
+            <a href="#" class="list-group-item">
+                Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
+            </a>
+            <a href="#" class="list-group-item">
+                Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+            </a>
+        </div>
+    </div>
+</div>*@
 
 @*<div class="well">
     <label asp-for="PricePerHour" class="control-label"></label>

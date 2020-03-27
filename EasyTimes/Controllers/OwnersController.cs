@@ -54,7 +54,7 @@ namespace EasyTimes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice")] Owner owner)
+        public async Task<IActionResult> Create([Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice,OvertimeProfitRate")] Owner owner)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace EasyTimes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice")] Owner owner)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice,OvertimeProfitRate")] Owner owner)
         {
             if (id != owner.id)
             {
