@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
+using Newtonsoft.Json;
 
 namespace EasyTimes.Controllers
 {
@@ -170,15 +171,35 @@ namespace EasyTimes.Controllers
       
         public IActionResult AddWorkload(DateTime date, DateTime start, DateTime end)
         {
+            if(date == DateTime.MinValue)
+            {
+                date = DateTime.Now;
+            }
+            if(start == DateTime.MinValue)
+            {
+                start = DateTime.Now; 
+            }
+            if (end == DateTime.MinValue)
+            {
+                end = DateTime.Now.AddHours(1);
+            }
             var workload = end.Subtract(start).TotalHours;
 
-            TempData["date"] = date.ToString();
-            TempData["start"] = start.ToString();
-            TempData["end"] = end.ToString();
+            TempData["date"] = date.ToString("yyyy-MM-dd");
+            TempData["start"] = start.ToString("hh:mm");
+            TempData["end"] = end.ToString("hh:mm");
             
             var order = _context.ServiceOrder.Where(s => s.CheckIn == true).First();
             order.AmountOfHours += workload;
-           
+
+            Charger charger = new Charger { Start_ = start, End_ = end, Hours_ = workload };
+
+            //serializa o charger
+            var json = JsonConvert.SerializeObject(charger);
+
+            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Json = json };
+
+            _context.LittleTask.Add(littleTask);
             _context.Update(order);
             _context.SaveChanges();
             return RedirectToAction(nameof(ViewDetails), new { id = order.id });
