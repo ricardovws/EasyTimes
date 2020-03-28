@@ -173,6 +173,7 @@ namespace EasyTimes.Controllers
             ServiceOrder serviceOrder = new ServiceOrder();
             serviceOrder.SerialCode = DateTime.Now.GetHashCode().ToString(); 
             serviceOrder.ClientID = id;
+            serviceOrder.ClientName=_context.Client.Where(c => c.id == id).First().Name;
             serviceOrder.ProjectName = startAServiceViewModel.ProjectName;
             serviceOrder.Comments = startAServiceViewModel.Comments;
             

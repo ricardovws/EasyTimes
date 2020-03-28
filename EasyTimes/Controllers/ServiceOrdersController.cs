@@ -192,11 +192,12 @@ namespace EasyTimes.Controllers
             
             var order = _context.ServiceOrder.Where(s => s.id == id).First();
             order.AmountOfHours += workload;
+            var owner = _context.Owner.FirstOrDefault();
+            order.TotalEarned += workload * owner.PricePerHour;
 
-            
             //var json = JsonConvert.SerializeObject(charger);
 
-            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Start=start, End=end };
+            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Start=start, End=end, BetweenBoth=workload };
 
             _context.LittleTask.Add(littleTask);
             _context.Update(order);
@@ -248,6 +249,24 @@ namespace EasyTimes.Controllers
             var list = _context.ServiceOrder.Where(s => s.CheckIn == true).ToList();
             var id = list.First().id;
             return RedirectToAction(nameof(ViewDetails), new { id = id });
+        }
+
+        //GET
+        public IActionResult DeleteLittleTask(int id)
+        {
+            var little = _context.LittleTask.Where(l => l.id == id).First();
+            return View(little);
+        }
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteLittleTask(LittleTask little)
+        {
+            var littleTask = _context.LittleTask.Where(l => l.id == little.id).First();
+            _context.LittleTask.Remove(littleTask);
+            _context.SaveChanges();
+            return GoBackToListOfDays();
+
         }
     }
 }
