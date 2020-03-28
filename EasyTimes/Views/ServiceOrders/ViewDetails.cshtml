@@ -41,7 +41,7 @@
                             <input type="time" class="form-control" name="end" value="@TempData["end"]" />
                         </div>
                     </div>
-                    <button type="submit" asp-action="AddWorkload" asp-route-id="@Html.DisplayFor(modelItem => Model.id)" class="btn btn-default">Submit</button>
+                    <button type="submit" asp-action="AddWorkload" asp-route-id="@Model.id" class="btn btn-default">Submit</button>
                 </form>
                 @*<ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Link</a></li>
@@ -50,40 +50,20 @@
         </div>
 
     </nav>
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+
 </div>
+<p class="text-primary">Some numbers about this project...</p>
+<hr />
 <div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AmountOfHours)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AmountOfHours)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @*@foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AmountOfHours)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AmountOfHours)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                    </td>
-                </tr>
-            }*@
-        </tbody>
-    </table>
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#">Home <span class="badge">42</span></a></li>
+        <li><a href="#">Profile <span class="badge"></span></a></li>
+        <li><a href="#">Messages <span class="badge">3</span></a></li>
+    </ul>
+    <hr />
+    <a asp-action="ShowListOfDays" asp-route-id="@Model.id" class="btn btn-info">See all!</a>
+</div>
+<hr />
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>

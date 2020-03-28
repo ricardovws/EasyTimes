@@ -8,6 +8,7 @@ namespace EasyTimes.Models
     public class Charger
     {
         public int id { get; set; }
+        public int ServiceOrderID { get; set; }
 
         public DateTime Start_ { get; set; } //Moment that you get started with a task
         public DateTime End_ { get; set; } //Moment that you stop working with a task

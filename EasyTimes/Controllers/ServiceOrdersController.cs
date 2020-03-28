@@ -169,7 +169,8 @@ namespace EasyTimes.Controllers
         }
 
       
-        public IActionResult AddWorkload(DateTime date, DateTime start, DateTime end)
+        public IActionResult AddWorkload(int id, DateTime date, DateTime start, DateTime end)
+
         {
             if(date == DateTime.MinValue)
             {
@@ -189,21 +190,64 @@ namespace EasyTimes.Controllers
             TempData["start"] = start.ToString("hh:mm");
             TempData["end"] = end.ToString("hh:mm");
             
-            var order = _context.ServiceOrder.Where(s => s.CheckIn == true).First();
+            var order = _context.ServiceOrder.Where(s => s.id == id).First();
             order.AmountOfHours += workload;
 
-            Charger charger = new Charger { Start_ = start, End_ = end, Hours_ = workload };
+            
+            //var json = JsonConvert.SerializeObject(charger);
 
-            //serializa o charger
-            var json = JsonConvert.SerializeObject(charger);
-
-            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Json = json };
+            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Start=start, End=end };
 
             _context.LittleTask.Add(littleTask);
             _context.Update(order);
             _context.SaveChanges();
             return RedirectToAction(nameof(ViewDetails), new { id = order.id });
             
+        }
+        public IActionResult ShowListOfDays(int id)
+        {
+           
+            var list = _context.LittleTask.Where(x => x.ServiceOrderID == id).ToList();
+
+            return View(list);
+        }
+
+
+        //GET
+        public IActionResult EditLittleTask(int id)
+        {
+            var little = _context.LittleTask.Where(l => l.id == id).First();
+            return View(little);
+            
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditLittleTask(LittleTask little)
+        {
+            var littleTask = _context.LittleTask.Where(l => l.id == little.id).First();
+            littleTask.Start = little.Start;
+            littleTask.End = little.End;
+            _context.LittleTask.Update(littleTask);
+            _context.SaveChanges();
+            return GoBackToListOfDays();
+
+        }
+
+        public IActionResult GoBackToListOfDays()
+        {
+            var list = _context.ServiceOrder.Where(s => s.CheckIn == true).ToList();
+            var id = list.First().id;
+            return RedirectToAction(nameof(ShowListOfDays), new { id = id });
+        }
+
+        public IActionResult GoBackToDetails()
+        {
+            var list = _context.ServiceOrder.Where(s => s.CheckIn == true).ToList();
+            var id = list.First().id;
+            return RedirectToAction(nameof(ViewDetails), new { id = id });
         }
     }
 }

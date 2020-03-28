@@ -11,6 +11,12 @@ namespace EasyTimes.Models
 
         public int ServiceOrderID { get; set; }
 
-        public string Json { get; set; }
+        //public string Json { get; set; }
+
+        public DateTime Start { get; set; }
+
+        public DateTime End { get; set; }
+
+        public double BetweenBoth { get; set; } // End - Start
     }
 }
