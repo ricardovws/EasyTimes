@@ -12,6 +12,7 @@ namespace EasyTimes.Models
         public int ClientID { get; set; }
         public string ProjectName { get; set; }
         public string Comments { get; set; }
+        public bool CheckIn { get; set; }
 
         //After you get the job done.
         public DateTime StartDate { get; set; }

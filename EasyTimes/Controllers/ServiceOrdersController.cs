@@ -152,22 +152,37 @@ namespace EasyTimes.Controllers
         public IActionResult ViewDetails(int id)
         {
             var order = _context.ServiceOrder.Where(o => o.id == id).First();
+
+            var list = _context.ServiceOrder.Where(x => x.CheckIn == true);
+            foreach(var line in list)
+            {
+                line.CheckIn = false;
+                _context.ServiceOrder.Update(line);
+            }
+            
+            order.CheckIn = true;
+            _context.ServiceOrder.Update(order);
+            _context.SaveChanges();
             return View(order);
 
-
         }
-        public IActionResult AddWorkload(int id, DateTime start, DateTime end)
+
+      
+        public IActionResult AddWorkload(DateTime date, DateTime start, DateTime end)
         {
             var workload = end.Subtract(start).TotalHours;
 
+            TempData["date"] = date.ToString();
             TempData["start"] = start.ToString();
             TempData["end"] = end.ToString();
             
-            var order = _context.ServiceOrder.Where(s => s.id == id).First();
+            var order = _context.ServiceOrder.Where(s => s.CheckIn == true).First();
             order.AmountOfHours += workload;
+           
             _context.Update(order);
             _context.SaveChanges();
-            return RedirectToAction(nameof(ViewDetails), new { id=id});
+            return RedirectToAction(nameof(ViewDetails), new { id = order.id });
+            
         }
     }
 }
