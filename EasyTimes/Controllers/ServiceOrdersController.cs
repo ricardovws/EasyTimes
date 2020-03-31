@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
 using Newtonsoft.Json;
 using EasyTimes.Services;
+using EasyTimes.Models.ViewModels;
 
 namespace EasyTimes.Controllers
 {
@@ -290,9 +291,33 @@ namespace EasyTimes.Controllers
 
         }
 
-        //public IActionResult ExportFileToPrint()
-        //{
+        public IActionResult ExportFileToPrint()
+        {
+            var list = _context.ServiceOrder.Where(s => s.CheckIn == true).ToList();
+            var id = list.First().id;
+            var _list = _context.LittleTask.Where(l => l.ServiceOrderID == id).ToList();
 
-        //}
+         
+
+            ReportToPrintViewModel reportToPrintViewModel = new ReportToPrintViewModel();
+            reportToPrintViewModel.juja = "sdjsudhsudhsuhdsudhsuhdusdhus";
+
+            List<string> vs = new List<string>();
+            string c = "YYYYYYY\r\nYYYYYYYY";
+            string a = "sdusdhuuhssijaijs" +Environment.NewLine + c;
+            string X = "<p class="+"\"text - success\""+">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>";
+            string b = "xxxxxxxxxxxxxxxxxxxxxxxx";
+            
+
+            vs.Add(a);
+           // vs.Add(b);
+            vs.Add(c);
+
+            reportToPrintViewModel.list = vs;
+
+
+            return View(reportToPrintViewModel);
+
+        }
     }
 }
