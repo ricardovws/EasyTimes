@@ -27,13 +27,9 @@
             <b></b>
             @Html.DisplayFor(modelItem => Model.Phone)
         </div>
-        <div class="panel-body">
-            <div class="col-md-offset-11">
-                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-            </div>
-        </div>
+     
     </div>
-   
+
 </div>
 
 
@@ -54,20 +50,16 @@
             @Html.DisplayFor(modelItem => Model.Agency)
         </div>
         <div class="panel-body">
-            <label asp-for="CurrentAccount" class="control-label"></label>
+            <strong>Current account </strong><label hidden asp-for="CurrentAccount" class="control-label" ></label>
             <b></b>
             @Html.DisplayFor(modelItem => Model.CurrentAccount)
         </div>
-        <div class="panel-body">
-            <div class="col-md-offset-11">
-                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-            </div>
-        </div>
+       
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="list-group">
             <a href="#" class="list-group-item active">
                 Prices and Costs
@@ -80,6 +72,15 @@
             </a>
             <a href="#" class="list-group-item">
                 Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+            </a>
+            <a href="#" class="list-group-item">
+                Normal Time   |   @Html.DisplayFor(modelItem => Model.NormalTime) h
+            </a>
+            <a href="#" class="list-group-item">
+                Time to receive Meal Ticket   |   @Html.DisplayFor(modelItem => Model.TimeToMealTicket) h
+            </a>
+            <a href="#" class="list-group-item">
+                Meal Ticket   |  R$ @Html.DisplayFor(modelItem => Model.MealTicket)
             </a>
         </div>
         <div class="col-md-offset-11">
@@ -88,34 +89,43 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
 @*<div class="row">
-    <div class="col-md-offset-8">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                Prices and Costs
-            </a>
-            <a href="#" class="list-group-item">
-                Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
-            </a>
-            <a href="#" class="list-group-item">
-                Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
-            </a>
-            <a href="#" class="list-group-item">
-                Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
-            </a>
+        <div class="col-md-offset-8">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    Prices and Costs
+                </a>
+                <a href="#" class="list-group-item">
+                    Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
+                </a>
+                <a href="#" class="list-group-item">
+                    Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
+                </a>
+                <a href="#" class="list-group-item">
+                    Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+                </a>
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 @*<div class="well">
-    <label asp-for="PricePerHour" class="control-label"></label>
- 
-    @Html.DisplayFor(modelItem => Model.PricePerHour)
-     <b></b>
-    <label asp-for="GasPrice" class="control-label"></label>
-   
-    @Html.DisplayFor(modelItem => Model.GasPrice)
-</div>*@
+        <label asp-for="PricePerHour" class="control-label"></label>
+
+        @Html.DisplayFor(modelItem => Model.PricePerHour)
+         <b></b>
+        <label asp-for="GasPrice" class="control-label"></label>
+
+        @Html.DisplayFor(modelItem => Model.GasPrice)
+    </div>*@
 @*<h2>Index</h2>
 
     <p>
@@ -187,3 +197,4 @@
     }
         </tbody>
     </table>*@
+

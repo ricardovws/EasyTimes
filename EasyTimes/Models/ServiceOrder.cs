@@ -18,10 +18,16 @@ namespace EasyTimes.Models
         //After you get the job done.
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public double AmountOfHours { get; set; }
+        public double AmountOfHours { get; set; } //horas totais do projeto
+        public double NormalHours { get; set; } //horas normais do projeto, sem considerar hora-extra.
+        public double Overtime { get; set; } //hora-extra.
+        public int MealTicket { get; set; } // VR
+        public double MealTicketValue { get; set; }
+        public double OnTheRach { get; set; } //kilometragem
         //Number of worked hours
         //*****************************
 
+       
         public double TotalEarned { get; set; }
         //How much that you have been earned until this moment
 

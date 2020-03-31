@@ -7,22 +7,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
 using Newtonsoft.Json;
+using EasyTimes.Services;
 
 namespace EasyTimes.Controllers
 {
     public class ServiceOrdersController : Controller
     {
         private readonly EasyTimesContext _context;
+        private readonly ServiceOrderService _serviceOrderService;
 
-        public ServiceOrdersController(EasyTimesContext context)
+        public ServiceOrdersController(EasyTimesContext context, ServiceOrderService serviceOrderService)
         {
             _context = context;
+            _serviceOrderService = serviceOrderService;
         }
+
+
 
         // GET: ServiceOrders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ServiceOrder.ToListAsync());
+            return View(await _context.ServiceOrder.OrderByDescending(x=>x.id).ToListAsync());
         }
 
         // GET: ServiceOrders/Details/5
@@ -141,6 +146,12 @@ namespace EasyTimes.Controllers
         {
             var serviceOrder = await _context.ServiceOrder.FindAsync(id);
             _context.ServiceOrder.Remove(serviceOrder);
+            var list =_context.LittleTask.Where(x => x.ServiceOrderID == id).ToList();
+            foreach(var line in list)
+            {
+                _context.LittleTask.Remove(line);
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -169,7 +180,8 @@ namespace EasyTimes.Controllers
         }
 
       
-        public IActionResult AddWorkload(int id, DateTime date, DateTime start, DateTime end)
+        public IActionResult AddWorkload(int id, DateTime date, DateTime start, DateTime end, double kM)
+
 
         {
             if(date == DateTime.MinValue)
@@ -190,25 +202,27 @@ namespace EasyTimes.Controllers
             TempData["start"] = start.ToString("hh:mm");
             TempData["end"] = end.ToString("hh:mm");
             
-            var order = _context.ServiceOrder.Where(s => s.id == id).First();
-            order.AmountOfHours += workload;
-            var owner = _context.Owner.FirstOrDefault();
-            order.TotalEarned += workload * owner.PricePerHour;
-
-            //var json = JsonConvert.SerializeObject(charger);
-
-            LittleTask littleTask = new LittleTask { ServiceOrderID = order.id, Start=start, End=end, BetweenBoth=workload };
-
+            LittleTask littleTask = new LittleTask();
+            littleTask.Start = start;
+            littleTask.End = end;
+            littleTask.BetweenBoth = workload;
+            littleTask.kM = kM;
+            littleTask.ServiceOrderID = id;
+            littleTask.Date = date;
             _context.LittleTask.Add(littleTask);
-            _context.Update(order);
             _context.SaveChanges();
+          
+            //roda método pra atualizar a service order
+            _serviceOrderService.TotalValues(id);
+            //var json = JsonConvert.SerializeObject(charger);
+            var order = _context.ServiceOrder.Where(s => s.id == id).First();
             return RedirectToAction(nameof(ViewDetails), new { id = order.id });
             
         }
         public IActionResult ShowListOfDays(int id)
         {
            
-            var list = _context.LittleTask.Where(x => x.ServiceOrderID == id).ToList();
+            var list = _context.LittleTask.OrderByDescending(n=>n.Date).Where(x => x.ServiceOrderID == id).ToList();
 
             return View(list);
         }
@@ -231,8 +245,13 @@ namespace EasyTimes.Controllers
             var littleTask = _context.LittleTask.Where(l => l.id == little.id).First();
             littleTask.Start = little.Start;
             littleTask.End = little.End;
-            _context.LittleTask.Update(littleTask);
-            _context.SaveChanges();
+            littleTask.kM = little.kM;
+            littleTask.Date = little.Date;
+            var workload = little.End.Subtract(little.Start).TotalHours;
+            littleTask.BetweenBoth = workload;
+            
+            var serviceOrderId = littleTask.ServiceOrderID;
+            _serviceOrderService.TotalValues(serviceOrderId);
             return GoBackToListOfDays();
 
         }
@@ -265,8 +284,15 @@ namespace EasyTimes.Controllers
             var littleTask = _context.LittleTask.Where(l => l.id == little.id).First();
             _context.LittleTask.Remove(littleTask);
             _context.SaveChanges();
+            var serviceOrderId = littleTask.ServiceOrderID;
+            _serviceOrderService.TotalValues(serviceOrderId);
             return GoBackToListOfDays();
 
         }
+
+        //public IActionResult ExportFileToPrint()
+        //{
+
+        //}
     }
 }

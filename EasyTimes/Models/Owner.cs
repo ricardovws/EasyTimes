@@ -19,6 +19,9 @@ namespace EasyTimes.Models
         //Prices and Costs
         public double PricePerHour { get; set; } //How much you earn per hour
         public double GasPrice { get; set; } //Price paid for the gasoline
+        public double NormalTime { get; set; } //normal workload. Everything more than that is overtime.
+        public double TimeToMealTicket { get; set; } // Time to receive meal ticket.
+        public double MealTicket { get; set; } //Value of your meal ticket
         public double OvertimeProfitRate { get; set; } //Percentual that will increase you salary. 
     }
 }

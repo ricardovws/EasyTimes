@@ -13,10 +13,22 @@ namespace EasyTimes.Models
 
         //public string Json { get; set; }
 
+        public DateTime Date { get; set; }
+
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
 
         public double BetweenBoth { get; set; } // End - Start
+
+        public double OvertimeValue { get; set; }
+
+        public bool Overtime { get; set; }
+        public bool MealTicket { get; set; }
+
+
+        public double kM { get; set; }
+
+        public string Comments { get; set; }
     }
 }

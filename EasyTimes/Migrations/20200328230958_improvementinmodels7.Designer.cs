@@ -4,14 +4,16 @@ using EasyTimes.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EasyTimes.Migrations
 {
     [DbContext(typeof(EasyTimesContext))]
-    partial class EasyTimesContextModelSnapshot : ModelSnapshot
+    [Migration("20200328230958_improvementinmodels7")]
+    partial class improvementinmodels7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,11 +75,7 @@ namespace EasyTimes.Migrations
 
                     b.Property<DateTime>("End");
 
-                    b.Property<bool>("MealTicket");
-
-                    b.Property<bool>("Overtime");
-
-                    b.Property<double>("OvertimeValue");
+                    b.Property<double>("Overtime");
 
                     b.Property<int>("ServiceOrderID");
 
@@ -118,8 +116,6 @@ namespace EasyTimes.Migrations
 
                     b.Property<double>("PricePerHour");
 
-                    b.Property<double>("TimeToMealTicket");
-
                     b.HasKey("id");
 
                     b.ToTable("Owner");
@@ -142,16 +138,6 @@ namespace EasyTimes.Migrations
                     b.Property<string>("Comments");
 
                     b.Property<DateTime>("EndDate");
-
-                    b.Property<int>("MealTicket");
-
-                    b.Property<double>("MealTicketValue");
-
-                    b.Property<double>("NormalHours");
-
-                    b.Property<double>("OnTheRach");
-
-                    b.Property<double>("Overtime");
 
                     b.Property<string>("ProjectName");
 

@@ -1,0 +1,30 @@
+﻿@model EasyTimes.Models.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceOrderID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServiceOrderID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Json)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Json)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

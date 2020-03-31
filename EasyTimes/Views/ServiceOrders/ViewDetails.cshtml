@@ -19,10 +19,10 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @*<ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
 
-                    </ul>*@
+        </ul>*@
 
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -40,12 +40,15 @@
                             <label for="end">End</label>
                             <input type="time" class="form-control" name="end" value="@TempData["end"]" />
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="kM">On the ranch</label>
+                            <input type="text" class="form-control" name="kM">
+                        </div>
                     </div>
                     <button type="submit" asp-action="AddWorkload" asp-route-id="@Model.id" class="btn btn-default">Submit</button>
                 </form>
-                @*<ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                    </ul>*@
+               
             </div>
         </div>
 
@@ -57,12 +60,21 @@
 <hr />
 <div>
     <ul class="nav nav-pills">
-        <li class="active"><a href="#">How much to earn <span class="badge">R$ @Model.TotalEarned
-</span></a></li>
+        <li class="active">
+            <a href="#">
+                How much to earn <span class="badge">
+                    R$ @Model.TotalEarned
+                </span>
+            </a>
+        </li>
         <li><a href="#">Time worked <span class="badge">@Model.AmountOfHours h</span></a></li>
+        <li><a href="#">Overtime worked <span class="badge">@Model.Overtime h</span></a></li>
+        <li><a href="#">Total run <span class="badge">@Model.OnTheRach km</span></a></li>
+        <li><a href="#">Meal ticket <span class="badge"> R$ @Model.MealTicketValue</span></a></li>
     </ul>
     <hr />
-    <a asp-action="ShowListOfDays" asp-route-id="@Model.id" class="btn btn-info">See all!</a>
+    <a asp-action="ShowListOfDays" asp-route-id="@Model.id" class="btn btn-info">See all!</a> 
+    <a asp-action="ExportFileToPrint" asp-route-id="@Model.id" class="btn btn-info">Export file to print!</a>
 </div>
 <hr />
 <div>

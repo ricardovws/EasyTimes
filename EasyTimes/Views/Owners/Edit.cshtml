@@ -59,6 +59,22 @@
                 <span asp-validation-for="OvertimeProfitRate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="NormalTime" class="control-label"></label>
+                <input asp-for="NormalTime" class="form-control" />
+                <span asp-validation-for="NormalTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeToMealTicket" class="control-label"></label>
+                <input asp-for="TimeToMealTicket" class="form-control" />
+                <span asp-validation-for="TimeToMealTicket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MealTicket" class="control-label"></label>
+                <input asp-for="MealTicket" class="form-control" />
+                <span asp-validation-for="MealTicket" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

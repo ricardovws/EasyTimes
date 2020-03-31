@@ -5,33 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EasyTimes.Models;
 
-namespace EasyTimes.Controllers
+namespace EasyTimes.Models
 {
-    //Fazer método de seed para carregar um user genérico.
-
-    //Está tudo funcional, só falta criar uma viewmodel para fazer a edição separadamente em grupos
-    //de atributos, e não tudo de uma vez, como está sendo feito agora.
-
-
-    public class OwnersController : Controller
+    public class ChargersController : Controller
     {
-        private readonly EasyTimesContext _context;
+        private readonly ChargerContext _context;
 
-        public OwnersController(EasyTimesContext context)
+        public ChargersController(ChargerContext context)
         {
             _context = context;
         }
 
-        // GET: Owners
-        public IActionResult Index()
+        // GET: Chargers
+        public async Task<IActionResult> Index()
         {
-           return View(_context.Owner.FirstOrDefault(x => x.Name != null));
-           
+            return View(await _context.Charger.ToListAsync());
         }
 
-        // GET: Owners/Details/5
+        // GET: Chargers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,64 +31,62 @@ namespace EasyTimes.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.Owner
+            var charger = await _context.Charger
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (owner == null)
+            if (charger == null)
             {
                 return NotFound();
             }
 
-            return View(owner);
+            return View(charger);
         }
 
-        // GET: Owners/Create
+        // GET: Chargers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Owners/Create
+        // POST: Chargers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice,OvertimeProfitRate")] Owner owner)
+        public async Task<IActionResult> Create([Bind("id,Start_,End_,Hours_,OnTheRanch")] Charger charger)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(owner);
+                _context.Add(charger);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(owner);
+            return View(charger);
         }
 
-        // GET: Owners/Edit/5
+        // GET: Chargers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            id = 1;
             if (id == null)
             {
                 return NotFound();
             }
 
-            var owner = await _context.Owner.FindAsync(id);
-            if (owner == null)
+            var charger = await _context.Charger.FindAsync(id);
+            if (charger == null)
             {
                 return NotFound();
             }
-            owner = _context.Owner.FirstOrDefault(x => x.Name != null);
-            return View(owner);
+            return View(charger);
         }
 
-        // POST: Owners/Edit/5
+        // POST: Chargers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice,NormalTime,TimeToMealTicket,MealTicket,OvertimeProfitRate")] Owner owner)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Start_,End_,Hours_,OnTheRanch")] Charger charger)
         {
-            if (id != owner.id)
+            if (id != charger.id)
             {
                 return NotFound();
             }
@@ -105,12 +95,12 @@ namespace EasyTimes.Controllers
             {
                 try
                 {
-                    _context.Update(owner);
+                    _context.Update(charger);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OwnerExists(owner.id))
+                    if (!ChargerExists(charger.id))
                     {
                         return NotFound();
                     }
@@ -121,10 +111,10 @@ namespace EasyTimes.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(owner);
+            return View(charger);
         }
 
-        // GET: Owners/Delete/5
+        // GET: Chargers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,30 +122,30 @@ namespace EasyTimes.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.Owner
+            var charger = await _context.Charger
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (owner == null)
+            if (charger == null)
             {
                 return NotFound();
             }
 
-            return View(owner);
+            return View(charger);
         }
 
-        // POST: Owners/Delete/5
+        // POST: Chargers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var owner = await _context.Owner.FindAsync(id);
-            _context.Owner.Remove(owner);
+            var charger = await _context.Charger.FindAsync(id);
+            _context.Charger.Remove(charger);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OwnerExists(int id)
+        private bool ChargerExists(int id)
         {
-            return _context.Owner.Any(e => e.id == id);
+            return _context.Charger.Any(e => e.id == id);
         }
     }
 }

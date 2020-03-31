@@ -13,7 +13,9 @@
 <table class="table">
     <thead>
         <tr>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Start)
             </th>
@@ -23,7 +25,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.BetweenBoth)
             </th>
-          
+            <th>
+                @Html.DisplayNameFor(model => model.Overtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kM)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -31,7 +42,9 @@
         @foreach (var item in Model)
         {
         <tr>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Start)
             </td>
@@ -41,14 +54,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BetweenBoth)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Overtime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kM)
+            </td>
 
             <td>
                 <a asp-action="EditLittleTask" asp-route-id="@item.id">Edit</a> |
 
-                <a asp-action="DeleteLittleTask" asp-route-id="@item.id">Delete</a> 
+                <a asp-action="DeleteLittleTask" asp-route-id="@item.id">Delete</a>
 
             </td>
-            
+
         </tr>
         }
     </tbody>
