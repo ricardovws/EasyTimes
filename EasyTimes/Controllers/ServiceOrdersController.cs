@@ -9,6 +9,7 @@ using EasyTimes.Models;
 using Newtonsoft.Json;
 using EasyTimes.Services;
 using EasyTimes.Models.ViewModels;
+using System.Dynamic;
 
 namespace EasyTimes.Controllers
 {
@@ -297,23 +298,12 @@ namespace EasyTimes.Controllers
             var id = list.First().id;
             var _list = _context.LittleTask.Where(l => l.ServiceOrderID == id).ToList();
 
+            dynamic myModel = new ExpandoObject();
+            myModel._list = _list;
          
 
             ReportToPrintViewModel reportToPrintViewModel = new ReportToPrintViewModel();
-            reportToPrintViewModel.juja = "sdjsudhsudhsuhdsudhsuhdusdhus";
-
-            List<string> vs = new List<string>();
-            string c = "YYYYYYY\r\nYYYYYYYY";
-            string a = "sdusdhuuhssijaijs" +Environment.NewLine + c;
-            string X = "<p class="+"\"text - success\""+">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>";
-            string b = "xxxxxxxxxxxxxxxxxxxxxxxx";
-            
-
-            vs.Add(a);
-           // vs.Add(b);
-            vs.Add(c);
-
-            reportToPrintViewModel.list = vs;
+            reportToPrintViewModel._list = myModel._list;
 
 
             return View(reportToPrintViewModel);

@@ -8,7 +8,7 @@ namespace EasyTimes.Models.ViewModels
     public class ReportToPrintViewModel
     {
         public string Infos { get; set; }
-        public List<string> list { get; set; }
+        public List<LittleTask> _list { get; set; }
         public string juja{ get; set; }
 
 

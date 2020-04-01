@@ -1,9 +1,10 @@
-﻿@model EasyTimes.Models.ViewModels.ReportToPrintViewModel
+﻿
+@model dynamic
 @{
     ViewData["Title"] = "ViewDetails";
 }
 
-<h2>@Html.DisplayFor(modelItem => Model.ProjectName) - @Html.DisplayFor(modelItem => Model.SerialCode) </h2>
+<h2>@*@Html.DisplayFor(modelItem => Model.ProjectName) - @Html.DisplayFor(modelItem => Model.SerialCode)*@ </h2>
 
 
 <p class="text-primary">@Model.Comments</p>
@@ -23,43 +24,26 @@
         <li><a href="#">Meal ticket <span class="badge"> R$ @Model.MealTicketValue</span></a></li>
     </ul>
     <hr />
-</div>
-@Model.juja
-<div>
-    ASUAHUAHUHUHUASHUSAHUSAHUHSAHUAS
-
-    <table class="table">
-        <thead>
-            <tr>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Comments)
-                </th>
-
-
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.list)
-            {
-                <tr>
-
-                    <td>
-                        @Html.DisplayFor(model => model.list)
-                    </td>
-
-
-
-                </tr>
-            }
-        </tbody>
-    </table>
-
-
-
 
 </div>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+    </tr>
+    @foreach (LittleTask littleTask in Model._list)
+    {
+    <tr>
+        <td>@littleTask.Date</td>
+        <td>@littleTask.Start</td>
+        <td>@littleTask.End</td>
+    </tr>
+    }
+</table>
+
+
 <hr />
 <div>
     <a asp-action="GoBackToDetails">Back to List</a>
