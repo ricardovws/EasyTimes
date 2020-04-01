@@ -295,8 +295,16 @@ namespace EasyTimes.Controllers
         public IActionResult ExportFileToPrint()
         {
             var list = _context.ServiceOrder.Where(s => s.CheckIn == true).ToList();
-            var id = list.First().id;
+            var serviceOrder = list.First();
+            var id = serviceOrder.id;
             var _list = _context.LittleTask.Where(l => l.ServiceOrderID == id).ToList();
+            var comments = serviceOrder.Comments;
+            var amountOfHours = serviceOrder.AmountOfHours;
+            var overtime = serviceOrder.Overtime;
+            var mealTicket = serviceOrder.MealTicketValue;
+            var onTheRanch = serviceOrder.OnTheRach;
+            var totalEarned = serviceOrder.TotalEarned;
+
 
             dynamic myModel = new ExpandoObject();
             myModel._list = _list;
@@ -304,7 +312,12 @@ namespace EasyTimes.Controllers
 
             ReportToPrintViewModel reportToPrintViewModel = new ReportToPrintViewModel();
             reportToPrintViewModel._list = myModel._list;
-
+            reportToPrintViewModel.Comments = comments;
+            reportToPrintViewModel.AmountOfHours = amountOfHours;
+            reportToPrintViewModel.Overtime = overtime;
+            reportToPrintViewModel.MealTicketValue = mealTicket;
+            reportToPrintViewModel.OnTheRach=onTheRanch;
+            reportToPrintViewModel.TotalEarned = totalEarned;
 
             return View(reportToPrintViewModel);
 

@@ -4,7 +4,7 @@
     ViewData["Title"] = "ViewDetails";
 }
 
-<h2>@*@Html.DisplayFor(modelItem => Model.ProjectName) - @Html.DisplayFor(modelItem => Model.SerialCode)*@ </h2>
+<h2>@Model.ProjectName - @Model.ClientName </h2>
 
 
 <p class="text-primary">@Model.Comments</p>
@@ -27,24 +27,40 @@
 
 </div>
 
-<table>
+<table class="table">
+    <thead>
     <tr>
         <th>Date</th>
+        <th></th>
         <th>Start</th>
+        <th></th>
         <th>End</th>
+        <th></th>
+        <th>Quantity of hours</th>
+        <th></th>
+        <th>Travel (km)</th>
+        <th></th>
     </tr>
-    @foreach (LittleTask littleTask in Model._list)
-    {
-    <tr>
-        <td>@littleTask.Date</td>
-        <td>@littleTask.Start</td>
-        <td>@littleTask.End</td>
-    </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (LittleTask littleTask in Model._list)
+        {
+            <tr>
+                <td>@littleTask.Date.ToString("dd/MM/yyyy")</td>
+                <td></td>
+                <td>@littleTask.Start.ToString("HH:mm")</td>
+                <td></td>
+                <td>@littleTask.End.ToString("HH:mm")</td>
+                <td></td>
+                <td>@littleTask.BetweenBoth</td>
+                <td></td>
+                <td>@littleTask.kM</td>
+            </tr>
+        }
+        </tbody>
 </table>
-
+<td>
+    <a asp-action="GoBackToDetails">Go back to details</a>
+</td>
 
 <hr />
-<div>
-    <a asp-action="GoBackToDetails">Back to List</a>
-</div>
