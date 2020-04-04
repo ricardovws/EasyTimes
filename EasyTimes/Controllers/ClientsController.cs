@@ -64,6 +64,18 @@ namespace EasyTimes.Controllers
         {
             if (ModelState.IsValid)
             {
+                _context.Client.Any();
+                if(_context.Client.Any() == false)
+                {
+                    client.id = 1;
+                }
+                else
+                {
+                    var id = _context.Client.Last(x => x.id != 0).id;
+                    id++;
+                    client.id = id;
+                    
+                }
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -170,8 +182,24 @@ namespace EasyTimes.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult StartAService(int id, StartAServiceViewModel startAServiceViewModel)
         {
+
+            int iD = 0;
+
+            if (_context.ServiceOrder.Any() == false)
+            {
+                iD = 1;
+            }
+            else
+            {
+                var ID = _context.Client.Last(x => x.id != 0).id;
+                ID++;
+                iD = ID;
+
+            }
+
             ServiceOrder serviceOrder = new ServiceOrder();
-            serviceOrder.SerialCode = DateTime.Now.GetHashCode().ToString(); 
+            serviceOrder.id = iD;
+            serviceOrder.SerialCode = DateTime.Now.GetHashCode();
             serviceOrder.ClientID = id;
             serviceOrder.ClientName=_context.Client.Where(c => c.id == id).First().Name;
             serviceOrder.ProjectName = startAServiceViewModel.ProjectName;

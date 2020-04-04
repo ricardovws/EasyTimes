@@ -39,7 +39,7 @@ namespace EasyTimes
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<EasyTimesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("EasyTimesContext")));
+                    options.UseMySql(Configuration.GetConnectionString("EasyTimesContext"), builder => builder.MigrationsAssembly("EasyTimes")));
             services.AddScoped<ServiceOrderService>();
             services.AddScoped<SeedingService>();
 
@@ -61,7 +61,7 @@ namespace EasyTimes
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy(); No cookies used at all!
 
             app.UseMvc(routes =>
             {

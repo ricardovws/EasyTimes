@@ -19,8 +19,8 @@ namespace EasyTimes.Models.ViewModels
         public double AmountOfHours { get; set; }
         //Number of worked hours
         //*****************************
-        
 
+        public bool StatusPayment { get; set; }
 
         //***********************************//
 

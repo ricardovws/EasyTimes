@@ -3,14 +3,16 @@ using System;
 using EasyTimes.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EasyTimes.Migrations
 {
     [DbContext(typeof(EasyTimesContext))]
-    partial class EasyTimesContextModelSnapshot : ModelSnapshot
+    [Migration("20200403195117_morethings")]
+    partial class morethings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +152,7 @@ namespace EasyTimes.Migrations
 
                     b.Property<string>("ProjectName");
 
-                    b.Property<int>("SerialCode");
+                    b.Property<string>("SerialCode");
 
                     b.Property<DateTime>("StartDate");
 

@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Worked hours</h2>
 
-    <td>
-        <a asp-action="GoBackToDetails">Go back to details</a>
-    </td>
-
+<hr />
+<td>
+    <a asp-action="GoBackToDetails" class="btn btn-default">Go back to details</a>
+</td>
 <table class="table">
     <thead>
         <tr>
@@ -23,16 +23,11 @@
                 @Html.DisplayNameFor(model => model.End)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BetweenBoth)
+                Total
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.Overtime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.kM)
+                km
             </th>
 
             <th></th>
@@ -41,37 +36,34 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Start)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.End)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BetweenBoth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Overtime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.kM)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BetweenBoth)
+                </td>
 
-            <td>
-                <a asp-action="EditLittleTask" asp-route-id="@item.id">Edit</a> |
+                <td>
+                    @Html.DisplayFor(modelItem => item.kM)
+                </td>
 
-                <a asp-action="DeleteLittleTask" asp-route-id="@item.id">Delete</a>
+                <td>
+                    <a asp-action="EditLittleTask" asp-route-id="@item.id" class="btn btn-primary btn-sm">Edit</a> |
 
-            </td>
+                    <a asp-action="DeleteLittleTask" asp-route-id="@item.id" class="btn btn-danger btn-sm">Delete</a>
 
-        </tr>
+                </td>
+
+            </tr>
         }
     </tbody>
 </table>
+
+

@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Client</h4>
+ 
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,7 +24,7 @@
             @Html.DisplayFor(model => model.CNPJ)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.MainContactEmail)
+           Contact Email
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MainContactEmail)
@@ -39,7 +39,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-default">Back to clients list</a>
     </form>
 </div>

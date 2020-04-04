@@ -203,8 +203,25 @@ namespace EasyTimes.Controllers
             TempData["date"] = date.ToString("yyyy-MM-dd");
             TempData["start"] = start.ToString("hh:mm");
             TempData["end"] = end.ToString("hh:mm");
-            
+
+            int iD = 0;
+
+            if (_context.LittleTask.Any() == false)
+            {
+                iD = 1;
+            }
+            else
+            {
+                var ID = _context.LittleTask.Last(x => x.id != 0).id;
+                ID++;
+                iD = ID;
+
+            }
+
+
+
             LittleTask littleTask = new LittleTask();
+            littleTask.id = iD;
             littleTask.Start = start;
             littleTask.End = end;
             littleTask.BetweenBoth = workload;
@@ -321,6 +338,27 @@ namespace EasyTimes.Controllers
 
             return View(reportToPrintViewModel);
 
+        }
+
+
+        //GET
+        public IActionResult PaymentStatus(int id)
+        {
+            var status = _context.ServiceOrder.Where(l => l.id == id).First();
+            return View(status);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PaymentStatus(ServiceOrder status)
+        {
+            var _status = _context.ServiceOrder.Where(l => l.id == status.id).First();
+            _status.PaymentStatus = status.PaymentStatus;
+            _context.ServiceOrder.Update(_status);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

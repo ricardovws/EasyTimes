@@ -24,6 +24,7 @@ namespace EasyTimes.Data
 
             Owner owner = new Owner();
 
+            owner.id = 1;
             owner.Name = "Unknown";
             owner.Email = "Unknown@Unknown.com";
 

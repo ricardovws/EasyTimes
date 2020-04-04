@@ -10,27 +10,30 @@
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
                 <p></p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProjectName)
+               Project Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SerialCode)
+                Serial Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClientName)
+               Client
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.AmountOfHours)
+                Amount of Hours
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalEarned)
+                Total Earned
+            </th>
+            <th>
+                Payment Status
             </th>
             <th></th>
         </tr>
@@ -39,7 +42,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a asp-action="ViewDetails" asp-route-id="@item.id">View task details!</a>
+                <a asp-action="ViewDetails" asp-route-id="@item.id" class="btn btn-info btn-xs">View task details!</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectName)
@@ -58,9 +61,12 @@
                 @Html.DisplayFor(modelItem => item.TotalEarned)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                @Html.DisplayFor(modelItem => item.PaymentStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-primary btn-sm">Edit info</a> |
                 
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
 }
