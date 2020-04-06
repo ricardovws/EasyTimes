@@ -10,7 +10,7 @@
 <td>
     <a asp-action="GoBackToDetails" class="btn btn-default">Go back to details</a>
 </td>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -38,13 +38,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => item.Date_string)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Start)
+                    @Html.DisplayFor(modelItem => item.Start_string)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.End)
+                    @Html.DisplayFor(modelItem => item.End_string)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BetweenBoth)

@@ -14,8 +14,8 @@
         <form asp-action="PaymentStatus">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
+       
 
-          
             <div class="form-group">
 
                 <label asp-for="PaymentStatus" class="control-label" />
@@ -25,18 +25,17 @@
                 <div>
                     <input type="radio" name="PaymentStatus" value="Billed" /> Billed
                 </div>
-                
+
 
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-default">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 

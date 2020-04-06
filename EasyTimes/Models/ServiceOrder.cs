@@ -9,7 +9,7 @@ namespace EasyTimes.Models
     public class ServiceOrder
     {
         public int id { get; set; } 
-        public int SerialCode { get; set; } //preciso criar um gerador de códigos diversos.
+        public string SerialCode { get; set; } //preciso criar um gerador de códigos diversos.
         public int ClientID { get; set; }
         public string ClientName { get; set; }
         public string ProjectName { get; set; }

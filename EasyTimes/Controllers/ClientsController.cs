@@ -183,7 +183,7 @@ namespace EasyTimes.Controllers
         public IActionResult StartAService(int id, StartAServiceViewModel startAServiceViewModel)
         {
 
-            int iD = 0;
+            int iD = 1;
 
             if (_context.ServiceOrder.Any() == false)
             {
@@ -191,15 +191,22 @@ namespace EasyTimes.Controllers
             }
             else
             {
-                var ID = _context.Client.Last(x => x.id != 0).id;
-                ID++;
-                iD = ID;
+                var ID = _context.ServiceOrder.Last().id;
+                iD += ID;
 
             }
 
             ServiceOrder serviceOrder = new ServiceOrder();
             serviceOrder.id = iD;
-            serviceOrder.SerialCode = DateTime.Now.GetHashCode();
+
+            var length = 8;
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, length)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            serviceOrder.SerialCode = result;
             serviceOrder.ClientID = id;
             serviceOrder.ClientName=_context.Client.Where(c => c.id == id).First().Name;
             serviceOrder.ProjectName = startAServiceViewModel.ProjectName;

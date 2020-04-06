@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using EasyTimes.Services;
 using EasyTimes.Models.ViewModels;
 using System.Dynamic;
+using System.Globalization;
 
 namespace EasyTimes.Controllers
 {
@@ -93,7 +94,7 @@ namespace EasyTimes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,SerialCode,ClientID,StartDate,EndDate,AmountOfHours")] ServiceOrder serviceOrder)
+        public async Task<IActionResult> Edit(int id, ServiceOrder serviceOrder)
         {
             if (id != serviceOrder.id)
             {
@@ -104,7 +105,11 @@ namespace EasyTimes.Controllers
             {
                 try
                 {
-                    _context.Update(serviceOrder);
+                    var service_Order =_context.ServiceOrder.First(x => x.id == id);
+                    service_Order.ProjectName = serviceOrder.ProjectName;
+                    service_Order.Comments = serviceOrder.Comments;
+                    service_Order.PaymentStatus = serviceOrder.PaymentStatus;
+                    _context.Update(service_Order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -188,7 +193,7 @@ namespace EasyTimes.Controllers
         {
             if(date == DateTime.MinValue)
             {
-                date = DateTime.Now;
+                date = DateTime.Now.Date;
             }
             if(start == DateTime.MinValue)
             {
@@ -224,7 +229,8 @@ namespace EasyTimes.Controllers
             littleTask.id = iD;
             littleTask.Start = start;
             littleTask.End = end;
-            littleTask.BetweenBoth = workload;
+            //var JAJA = Convert.ToDouble(workload, new CultureInfo("pt-BR"));
+            littleTask.BetweenBoth = Convert.ToDouble(workload.ToString("N2"));
             littleTask.kM = kM;
             littleTask.ServiceOrderID = id;
             littleTask.Date = date;
@@ -242,7 +248,12 @@ namespace EasyTimes.Controllers
         {
            
             var list = _context.LittleTask.OrderByDescending(n=>n.Date).Where(x => x.ServiceOrderID == id).ToList();
-
+            foreach(var line in list)
+            {
+               line.Date_string=line.Date.ToString("dd/MM/yyyy");
+               line.Start_string = line.Start.ToString("HH:mm");
+               line.End_string = line.End.ToString("HH:mm");
+            }
             return View(list);
         }
 
@@ -265,10 +276,10 @@ namespace EasyTimes.Controllers
             littleTask.Start = little.Start;
             littleTask.End = little.End;
             littleTask.kM = little.kM;
-            littleTask.Date = little.Date;
-            var workload = little.End.Subtract(little.Start).TotalHours;
-            littleTask.BetweenBoth = workload;
             
+            var workload = little.End.Subtract(little.Start).TotalHours;
+            littleTask.BetweenBoth = Convert.ToDouble(workload.ToString("N2"));
+
             var serviceOrderId = littleTask.ServiceOrderID;
             _serviceOrderService.TotalValues(serviceOrderId);
             return GoBackToListOfDays();
@@ -321,6 +332,8 @@ namespace EasyTimes.Controllers
             var mealTicket = serviceOrder.MealTicketValue;
             var onTheRanch = serviceOrder.OnTheRach;
             var totalEarned = serviceOrder.TotalEarned;
+            var projectName = serviceOrder.ProjectName;
+            var serialCode = serviceOrder.SerialCode;
 
 
             dynamic myModel = new ExpandoObject();
@@ -328,6 +341,8 @@ namespace EasyTimes.Controllers
          
 
             ReportToPrintViewModel reportToPrintViewModel = new ReportToPrintViewModel();
+            reportToPrintViewModel.ProjectName = projectName;
+            reportToPrintViewModel.SerialCode = serialCode;
             reportToPrintViewModel._list = myModel._list;
             reportToPrintViewModel.Comments = comments;
             reportToPrintViewModel.AmountOfHours = amountOfHours;

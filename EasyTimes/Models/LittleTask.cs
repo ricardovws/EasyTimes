@@ -13,9 +13,15 @@ namespace EasyTimes.Models
 
         //public string Json { get; set; }
 
+        public string Date_string { get; set; }
+
         public DateTime Date { get; set; }
 
+        public string Start_string { get; set; }
+
         public DateTime Start { get; set; }
+
+        public string End_string { get; set; }
 
         public DateTime End { get; set; }
 

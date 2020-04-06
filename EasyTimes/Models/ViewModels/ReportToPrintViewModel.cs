@@ -13,9 +13,10 @@ namespace EasyTimes.Models.ViewModels
         public string ClientName { get; set; }
         public string ProjectName { get; set; }
         public string Comments { get; set; }
+        public string SerialCode { get; set; }
 
 
-      
+
         public double AmountOfHours { get; set; } //horas totais do projeto
 
         public double Overtime { get; set; } //hora-extra.

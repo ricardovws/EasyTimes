@@ -103,10 +103,17 @@ namespace EasyTimes.Services
                 }
 
             }
+
+
+            //Pq ele está simplesmente ignorando esses códigos abaixo?????
+        
             order.MealTicketValue = order.MealTicket * owner.MealTicket;
             order.TotalEarned += order.NormalHours * owner.PricePerHour;
-            order.TotalEarned += order.Overtime * owner.PricePerHour * owner.OvertimeProfitRate;
+            order.TotalEarned += order.Overtime * owner.PricePerHour;
+            var profitRate = owner.OvertimeProfitRate / 100;
+            order.TotalEarned += order.Overtime * owner.PricePerHour * profitRate;
             order.TotalEarned += order.OnTheRach * owner.GasPrice;
+            ///////////////// até aqui
 
             _context.Update(order);
             _context.SaveChanges();
