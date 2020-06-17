@@ -18,6 +18,7 @@ namespace EasyTimes.Models
         public string CurrentAccount { get; set; }
         //Prices and Costs
         public double PricePerHour { get; set; } //How much you earn per hour
+        public string PricePerHour_String { get; set; }
         public double GasPrice { get; set; } //Price paid for the gasoline
         public double NormalTime { get; set; } //normal workload. Everything more than that is overtime.
         public double TimeToMealTicket { get; set; } // Time to receive meal ticket.

@@ -1,4 +1,4 @@
-﻿@model EasyTimes.Models.Owner
+﻿@model EasyTimes.Models.ViewModels.EditProfileViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -44,32 +44,32 @@
             </div>
             <div class="form-group">
                 <label asp-for="PricePerHour" class="control-label"></label> (R$)
-                <input asp-for="PricePerHour" class="form-control" />
+                <input asp-for="PricePerHour" type="number" class="form-control" />
                 <span asp-validation-for="PricePerHour" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GasPrice" class="control-label"></label> (R$)
-                <input asp-for="GasPrice" class="form-control" />
+                <input asp-for="GasPrice" type="number" class="form-control" />
                 <span asp-validation-for="GasPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OvertimeProfitRate" class="control-label"></label> (%)
-                <input asp-for="OvertimeProfitRate" class="form-control" />
+                <input asp-for="OvertimeProfitRate" type="number" class="form-control" />
                 <span asp-validation-for="OvertimeProfitRate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NormalTime" class="control-label"></label> (h)
-                <input asp-for="NormalTime" class="form-control" />
+                <input asp-for="NormalTime" type="number" class="form-control" />
                 <span asp-validation-for="NormalTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TimeToMealTicket" class="control-label"></label> (h)
-                <input asp-for="TimeToMealTicket" class="form-control" />
+                <input asp-for="TimeToMealTicket" type="number" class="form-control" />
                 <span asp-validation-for="TimeToMealTicket" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MealTicket" class="control-label"></label> (R$)
-                <input asp-for="MealTicket" class="form-control" />
+                <input asp-for="MealTicket" type="number" class="form-control" />
                 <span asp-validation-for="MealTicket" class="text-danger"></span>
             </div>
 

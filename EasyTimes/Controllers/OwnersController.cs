@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EasyTimes.Models;
+using EasyTimes.Models.ViewModels;
 
 namespace EasyTimes.Controllers
 {
@@ -86,7 +87,23 @@ namespace EasyTimes.Controllers
                 return NotFound();
             }
             owner = _context.Owner.FirstOrDefault(x => x.Name != null);
-            return View(owner);
+            EditProfileViewModel viewModel = new EditProfileViewModel();
+            viewModel.id = owner.id;
+            //viewModel.Name = owner.Name;
+            //viewModel.Email = owner.Email;
+            //viewModel.Phone = owner.Phone;
+            //viewModel.Bank = owner.Bank;
+            //viewModel.Agency = owner.Agency;
+            //viewModel.CurrentAccount = owner.CurrentAccount;
+            //
+            //viewModel.PricePerHour = owner.PricePerHour.ToString();
+            //viewModel.GasPrice = owner.GasPrice.ToString();
+            //viewModel.OvertimeProfitRate = owner.OvertimeProfitRate.ToString();
+            //viewModel.NormalTime = owner.NormalTime.ToString();
+            //viewModel.TimeToMealTicket = owner.TimeToMealTicket.ToString();
+            //viewModel.MealTicket = owner.MealTicket.ToString();
+
+            return View(viewModel);
         }
 
         // POST: Owners/Edit/5
@@ -94,18 +111,62 @@ namespace EasyTimes.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Email,Phone,Bank,Agency,CurrentAccount,PricePerHour,GasPrice,NormalTime,TimeToMealTicket,MealTicket,OvertimeProfitRate")] Owner owner)
+        public async Task<IActionResult> Edit(int id, EditProfileViewModel owner)
         {
+            
             if (id != owner.id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
-            {
-                try
+            {   
+            try
                 {
-                    _context.Update(owner);
+                    var ownerRefreshed = _context.Owner.First(x => x.id == owner.id);
+
+                    var pricePerHour = Convert.ToDouble(owner.PricePerHour, System.Globalization.CultureInfo.InvariantCulture);
+                    if(pricePerHour > 0)
+                    {
+                        ownerRefreshed.PricePerHour = pricePerHour;
+                    }
+                 
+                    var gasPrice = Convert.ToDouble(owner.GasPrice, System.Globalization.CultureInfo.InvariantCulture);
+                    if (gasPrice > 0)
+                    {
+                        ownerRefreshed.GasPrice = gasPrice;
+                    }
+
+
+                    var normalTime= Convert.ToDouble(owner.NormalTime, System.Globalization.CultureInfo.InvariantCulture);
+                    if (normalTime > 0)
+                    {
+                        ownerRefreshed.NormalTime = normalTime;
+                    }
+
+
+                    var timeToMealTicket = Convert.ToDouble(owner.TimeToMealTicket, System.Globalization.CultureInfo.InvariantCulture);
+                    if (timeToMealTicket > 0)
+                    {
+                        ownerRefreshed.TimeToMealTicket = timeToMealTicket;
+                    }
+
+
+                    var mealTicket = Convert.ToDouble(owner.MealTicket, System.Globalization.CultureInfo.InvariantCulture);
+                    if (mealTicket > 0)
+                    {
+                        ownerRefreshed.MealTicket = mealTicket;
+                    }
+
+
+                    var overtimeProfitRate = Convert.ToDouble(owner.OvertimeProfitRate, System.Globalization.CultureInfo.InvariantCulture);
+                    if (overtimeProfitRate > 0)
+                    {
+                        ownerRefreshed.OvertimeProfitRate = overtimeProfitRate;
+                    }
+
+
+                    _context.Update(ownerRefreshed);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
