@@ -3,6 +3,40 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: linear-gradient(-45deg, #1a2980, #26d0ce);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.navbar-inverse {
+    background-image: none;
+    border-bottom: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.profileInfo {
+    width: 40%;
+}
+
+.profile_table {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.tooltip {
+    opacity: 1;
+    position: unset;
+}
+
+.row {
+    margin-top: 2em;
+}
+
+.material-icons {
+    font-size: 3em;
 }
 
 /* Wrapping element */
@@ -35,3 +69,6 @@ body {
         display: none;
     }
 }
+
+
+

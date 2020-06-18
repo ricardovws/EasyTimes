@@ -4,197 +4,65 @@
     ViewData["Title"] = "Index";
 }
 
-<hr />
 
 
-<div class="col-md-6">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Personal data</h3>
-        </div>
-        <div class="panel-body">
-            <label asp-for="Name" class="control-label"></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.Name)
-        </div>
-        <div class="panel-body">
-            <label asp-for="Email" class="control-label"></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.Email)
-        </div>
-        <div class="panel-body">
-            <label asp-for="Phone" class="control-label"></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.Phone)
-        </div>
-     
-    </div>
-
-</div>
-
-
-
-<div class="col-md-6">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Banking account data</h3>
-        </div>
-        <div class="panel-body">
-            <label asp-for="Bank" class="control-label"></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.Bank)
-        </div>
-        <div class="panel-body">
-            <label asp-for="Agency" class="control-label"></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.Agency)
-        </div>
-        <div class="panel-body">
-            <strong>Current account </strong><label hidden asp-for="CurrentAccount" class="control-label" ></label>
-            <b></b>
-            @Html.DisplayFor(modelItem => Model.CurrentAccount)
-        </div>
-       
-    </div>
-</div>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                Prices and Costs
+    <div class="profile_table">
+        <div class="list-group profileInfo">
+                
+                <i class="tooltip material-icons" title="Personal and banking account data">accessibility</i>
+                
+                <a class="list-group-item">
+                    <strong>Name   |   </strong>@Html.DisplayFor(modelItem => Model.Name)
+                </a>
+
+                <a class="list-group-item">
+                    <strong>Email   |   </strong>@Html.DisplayFor(modelItem => Model.Email)
+                </a>
+
+                <a class="list-group-item">
+                    <strong>Phone   |   </strong>@Html.DisplayFor(modelItem => Model.Phone)
+                </a>
+
+                <a class="list-group-item">
+                    <strong>Bank   |   </strong>@Html.DisplayFor(modelItem => Model.Bank)
+                </a>
+
+                <a class="list-group-item">
+                    <strong>Agency   |   </strong>@Html.DisplayFor(modelItem => Model.Agency)
+                </a>
+
+                <a class="list-group-item">
+                    <strong>Current account   |   </strong>@Html.DisplayFor(modelItem => Model.CurrentAccount)
+                </a>
+
+        </div>
+        <div class="list-group profileInfo">
+
+            <i class="tooltip material-icons" title="Prices and costs">attach_money</i>
+
+            <a class="list-group-item">
+                <strong>Price per hour   |   </strong>R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
             </a>
-            <a href="#" class="list-group-item">
-                Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
+            <a class="list-group-item">
+                <strong>Gas price   |   </strong>R$ @Html.DisplayFor(modelItem => Model.GasPrice)
             </a>
-            <a href="#" class="list-group-item">
-                Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
+            <a class="list-group-item">
+                <strong>Overtime profit rate   |   </strong>@Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
             </a>
-            <a href="#" class="list-group-item">
-                Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+            <a class="list-group-item">
+                <strong>Normal Time   |   </strong>@Html.DisplayFor(modelItem => Model.NormalTime) h
             </a>
-            <a href="#" class="list-group-item">
-                Normal Time   |   @Html.DisplayFor(modelItem => Model.NormalTime) h
+            <a class="list-group-item">
+                <strong>Time to receive Meal Ticket   |   </strong>@Html.DisplayFor(modelItem => Model.TimeToMealTicket) h
             </a>
-            <a href="#" class="list-group-item">
-                Time to receive Meal Ticket   |   @Html.DisplayFor(modelItem => Model.TimeToMealTicket) h
-            </a>
-            <a href="#" class="list-group-item">
-                Meal Ticket   |  R$ @Html.DisplayFor(modelItem => Model.MealTicket)
+            <a class="list-group-item">
+                <strong>Meal Ticket   |  </strong>R$ @Html.DisplayFor(modelItem => Model.MealTicket)
             </a>
         </div>
-        <div class="col-md-offset-11">
+        @*<div class="col-md-offset-11">
             <a asp-action="Edit" class="btn btn-primary btn-sm">Edit</a>
-        </div>
+        </div>*@
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-@*<div class="row">
-        <div class="col-md-offset-8">
-            <div class="list-group">
-                <a href="#" class="list-group-item active">
-                    Prices and Costs
-                </a>
-                <a href="#" class="list-group-item">
-                    Price per hour   |   R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
-                </a>
-                <a href="#" class="list-group-item">
-                    Gas price   |   R$ @Html.DisplayFor(modelItem => Model.GasPrice)
-                </a>
-                <a href="#" class="list-group-item">
-                    Overtime profit rate   |   @Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
-                </a>
-            </div>
-        </div>
-    </div>*@
-
-@*<div class="well">
-        <label asp-for="PricePerHour" class="control-label"></label>
-
-        @Html.DisplayFor(modelItem => Model.PricePerHour)
-         <b></b>
-        <label asp-for="GasPrice" class="control-label"></label>
-
-        @Html.DisplayFor(modelItem => Model.GasPrice)
-    </div>*@
-@*<h2>Index</h2>
-
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bank)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Agency)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CurrentAccount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PricePerHour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GasPrice)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Bank)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Agency)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CurrentAccount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PricePerHour)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GasPrice)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>*@
-
