@@ -57,22 +57,24 @@
 </div>
 
 <p class="text-primary">@Model.Comments</p>
-<hr />
+
 <div>
-    <ul class="nav nav-pills">
-        <li class="active">
-            <a href="#">
-                How much to earn <span class="badge">
-                    R$ @Model.TotalEarned
-                </span>
-            </a>
-        </li>
-        <li><a href="#">Time worked <span class="badge">@Model.AmountOfHours h</span></a></li>
-        <li><a href="#">Overtime worked <span class="badge">@Model.Overtime h</span></a></li>
-        <li><a href="#">Total run <span class="badge">@Model.OnTheRach km</span></a></li>
-        <li><a href="#">Meal ticket <span class="badge"> R$ @Model.MealTicketValue</span></a></li>
-    </ul>
-    <hr />
+    <div class="table_background">
+        <ul class="nav nav-pills">
+            <li class="active">
+                <a href="#">
+                    How much to earn <span class="badge">
+                        R$ @Model.TotalEarned
+                    </span>
+                </a>
+            </li>
+            <li><a href="#">Time worked <span class="badge">@Model.AmountOfHours h</span></a></li>
+            <li><a href="#">Overtime worked <span class="badge">@Model.Overtime h</span></a></li>
+            <li><a href="#">Total run <span class="badge">@Model.OnTheRach km</span></a></li>
+            <li><a href="#">Meal ticket <span class="badge"> R$ @Model.MealTicketValue</span></a></li>
+        </ul>
+    </div>
+  
     <a asp-action="ShowListOfDays" asp-route-id="@Model.id" class="btn btn-info">See all!</a> 
     <a asp-action="ExportFileToPrint" asp-route-id="@Model.id" class="btn btn-info">Export file to print!</a>
 </div>

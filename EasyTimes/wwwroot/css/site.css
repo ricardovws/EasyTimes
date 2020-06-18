@@ -39,6 +39,34 @@ body {
     font-size: 3em;
 }
 
+.listOfClients {
+    color: white;
+}
+
+tr:hover {
+    background: rgba(52, 73, 94, 1);
+}
+
+tr:hover, .list-group-item.active:hover {
+    background: rgba(52, 73, 94, 1);
+}
+
+.table_background, .list-group-item.active {
+    background-color: rgba(37, 116, 169, 0.67);
+    z-index: 1;
+    color: #495026;
+    text-decoration: none;
+}
+
+
+.table_background {
+    background-color: rgba(37, 116, 169, 0.67);
+}
+
+.row_coloured, c {
+    color: white;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

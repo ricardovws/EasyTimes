@@ -12,53 +12,55 @@
         <div class="list-group profileInfo">
                 
                 <i class="tooltip material-icons" title="Personal and banking account data">accessibility</i>
+                    
+                    
+                    <a class="table_background list-group-item active">
+                        <strong>Name   |   </strong><c>@Html.DisplayFor(modelItem => Model.Name)</c>
+                    </a>
+                    
+                    
+                    <a class="table_background list-group-item active">
+                        <strong>Email   |   </strong><c>@Html.DisplayFor(modelItem => Model.Email)</c>
+                    </a>
+
+                    <a class="table_background list-group-item active">
+                        <strong>Phone   |   </strong><c>@Html.DisplayFor(modelItem => Model.Phone)</c>
+                    </a>
+
+                    <a class="table_background list-group-item active">
+                        <strong>Bank   |   </strong><c>@Html.DisplayFor(modelItem => Model.Bank)</c>
+                    </a>
+
+                    <a class="table_background list-group-item active">
+                        <strong>Agency   |   </strong><c>@Html.DisplayFor(modelItem => Model.Agency)</c>
+                    </a>
+
+                    <a class="table_background list-group-item active">
+                        <strong>Current account   |   </strong><c>@Html.DisplayFor(modelItem => Model.CurrentAccount)</c>
+                    </a>
                 
-                <a class="list-group-item">
-                    <strong>Name   |   </strong>@Html.DisplayFor(modelItem => Model.Name)
-                </a>
-
-                <a class="list-group-item">
-                    <strong>Email   |   </strong>@Html.DisplayFor(modelItem => Model.Email)
-                </a>
-
-                <a class="list-group-item">
-                    <strong>Phone   |   </strong>@Html.DisplayFor(modelItem => Model.Phone)
-                </a>
-
-                <a class="list-group-item">
-                    <strong>Bank   |   </strong>@Html.DisplayFor(modelItem => Model.Bank)
-                </a>
-
-                <a class="list-group-item">
-                    <strong>Agency   |   </strong>@Html.DisplayFor(modelItem => Model.Agency)
-                </a>
-
-                <a class="list-group-item">
-                    <strong>Current account   |   </strong>@Html.DisplayFor(modelItem => Model.CurrentAccount)
-                </a>
-
         </div>
         <div class="list-group profileInfo">
 
             <i class="tooltip material-icons" title="Prices and costs">attach_money</i>
 
-            <a class="list-group-item">
-                <strong>Price per hour   |   </strong>R$ @Html.DisplayFor(modelItem => Model.PricePerHour)
+            <a class="table_background list-group-item active">
+                <strong>Price per hour   |   </strong><c>R$ @Html.DisplayFor(modelItem => Model.PricePerHour)</c>
             </a>
-            <a class="list-group-item">
-                <strong>Gas price   |   </strong>R$ @Html.DisplayFor(modelItem => Model.GasPrice)
+            <a class="table_background list-group-item active">
+                <strong>Gas price   |   </strong><c>R$ @Html.DisplayFor(modelItem => Model.GasPrice)</c>
             </a>
-            <a class="list-group-item">
-                <strong>Overtime profit rate   |   </strong>@Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%
+            <a class="table_background list-group-item active">
+                <strong>Overtime profit rate   |   </strong><c>@Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%</c>
             </a>
-            <a class="list-group-item">
-                <strong>Normal Time   |   </strong>@Html.DisplayFor(modelItem => Model.NormalTime) h
+            <a class="table_background list-group-item active">
+                <strong>Normal Time   |   </strong><c>@Html.DisplayFor(modelItem => Model.NormalTime) h</c>
             </a>
-            <a class="list-group-item">
-                <strong>Time to receive Meal Ticket   |   </strong>@Html.DisplayFor(modelItem => Model.TimeToMealTicket) h
+            <a class="table_background list-group-item active">
+                <strong>Time to receive Meal Ticket   |   </strong><c>@Html.DisplayFor(modelItem => Model.TimeToMealTicket) h</c>
             </a>
-            <a class="list-group-item">
-                <strong>Meal Ticket   |  </strong>R$ @Html.DisplayFor(modelItem => Model.MealTicket)
+            <a class="table_background list-group-item active">
+                <strong>Meal Ticket   |  </strong><c>R$ @Html.DisplayFor(modelItem => Model.MealTicket)</c>
             </a>
         </div>
         @*<div class="col-md-offset-11">

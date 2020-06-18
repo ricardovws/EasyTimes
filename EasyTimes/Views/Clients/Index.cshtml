@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Clients</h2>
+<h2 class="listOfClients">List of Clients</h2>
 
 <p>
     <a asp-action="Create" class="btn btn-primary btn-group-sm">Create New</a>
 </p>
-<table class="table table-striped table-hover">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -30,23 +30,23 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table_background">
 @foreach (var item in Model) {
         <tr>
             <td>
                 <a asp-action="StartAService" asp-route-id="@item.id" class="btn btn-info btn-xs">Start a new service!</a> 
              
             </td>
-            <td>
+            <td class="row_coloured">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="row_coloured">
                 @Html.DisplayFor(modelItem => item.CNPJ)
             </td>
-            <td>
+            <td class="row_coloured">
                 @Html.DisplayFor(modelItem => item.MainContactEmail)
             </td>
-            <td>
+            <td class="row_coloured">
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
