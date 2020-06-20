@@ -16,14 +16,14 @@ body {
 }
 
 .profileInfo {
-    width: 40%;
+    width: 47.5%;
 }
 
 .profile_table {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .tooltip {
@@ -35,20 +35,56 @@ body {
     margin-top: 2em;
 }
 
-.material-icons {
+.big {
     font-size: 3em;
+}
+
+.small {
+    font-size: 1.5em;
+}
+
+.listOfIcons {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline-start: .5em;
+    align-items: baseline;
+}
+
+.centralize_elements {
+    display: inline-flex;
+}
+
+c {
+    margin-right: 4em;
+}
+
+#input_Name, #input_Email, #input_Phone,
+#input_Bank, #input_Agency, #input_CurrentAccount,
+#input_PricePerHour, #input_GasPrice, #input_OvertimeProfitRate,
+#input_NormalTime, #input_TimeToReceiveMealTicket, #input_MealTicket {
+    display: none;
+    width: 10em;
+    margin-right: 1em;
+}
+
+.option_to_edit, .option_to_edit_Email, .option_to_edit_Name,
+.option_to_edit_Phone, .option_to_edit_Bank, .option_to_edit_Agency,
+.option_to_edit_CurrentAccount, .option_to_edit_PricePerHour,
+.option_to_edit_GasPrice, .option_to_edit_OvertimeProfitRate,
+.option_to_edit_NormalTime, .option_to_edit_TimeToReceiveMealTicket,
+.option_to_edit_MealTicket {
+    display: none;
 }
 
 .listOfClients {
     color: white;
 }
 
-tr:hover {
-    background: rgba(52, 73, 94, 1);
-}
 
 tr:hover, .list-group-item.active:hover {
-    background: rgba(52, 73, 94, 1);
+    background: rgba(52, 73, 94, 1);  
 }
 
 .table_background, .list-group-item.active {
@@ -58,10 +94,10 @@ tr:hover, .list-group-item.active:hover {
     text-decoration: none;
 }
 
-
-.table_background {
-    background-color: rgba(37, 116, 169, 0.67);
+._hover_input {
+    color: #495026;
 }
+
 
 .row_coloured, c {
     color: white;

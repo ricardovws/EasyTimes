@@ -10,57 +10,122 @@
 <div class="row">
     <div class="profile_table">
         <div class="list-group profileInfo">
-                
-                <i class="tooltip material-icons" title="Personal and banking account data">accessibility</i>
-                    
-                    
-                    <a class="table_background list-group-item active">
-                        <strong>Name   |   </strong><c>@Html.DisplayFor(modelItem => Model.Name)</c>
-                    </a>
-                    
-                    
-                    <a class="table_background list-group-item active">
-                        <strong>Email   |   </strong><c>@Html.DisplayFor(modelItem => Model.Email)</c>
-                    </a>
 
-                    <a class="table_background list-group-item active">
-                        <strong>Phone   |   </strong><c>@Html.DisplayFor(modelItem => Model.Phone)</c>
-                    </a>
+            <ul class="listOfIcons">
+                <li><i class="tooltip big material-icons" title="Personal and banking account data">accessibility</i></li>
+                <li><i class="tooltip small material-icons" title="Double-click in the row that you would like to edit.">edit</i></li>
+            </ul>
 
-                    <a class="table_background list-group-item active">
-                        <strong>Bank   |   </strong><c>@Html.DisplayFor(modelItem => Model.Bank)</c>
-                    </a>
+            <a id="_Name" class="table_background list-group-item active">
+                <strong>Name   |   </strong><c>@Html.DisplayFor(modelItem => Model.Name)</c>
+                <div class="centralize_elements">
+                    <input id="input_Name" class="_hover_input" />
+                    <i id="done_Name" class="material-icons option_to_edit_Name done">done</i>                    
+                    <i id="clear_Name" class="material-icons option_to_edit_Name clear">clear</i>
+                </div>
+            </a>
 
-                    <a class="table_background list-group-item active">
-                        <strong>Agency   |   </strong><c>@Html.DisplayFor(modelItem => Model.Agency)</c>
-                    </a>
+            
+            <a id="_Email" class="table_background list-group-item active">
+                <strong>Email   |   </strong><c>@Html.DisplayFor(modelItem => Model.Email)</c>
+                <div class="centralize_elements">
+                    <input id="input_Email" class="_hover_input" />
+                    <i id="done_Email" class="material-icons option_to_edit_Email done">done</i>
+                    <i id="clear_Email" class="material-icons option_to_edit_Email clear">clear</i>
+                </div>
+            </a>
 
-                    <a class="table_background list-group-item active">
-                        <strong>Current account   |   </strong><c>@Html.DisplayFor(modelItem => Model.CurrentAccount)</c>
-                    </a>
-                
+            <a id="_Phone" class="table_background list-group-item active">
+                <strong>Phone   |   </strong><c>@Html.DisplayFor(modelItem => Model.Phone)</c>
+                <div class="centralize_elements">
+                    <input id="input_Phone" class="_hover_input" />
+                    <i id="done_Phone" class="material-icons option_to_edit_Phone done">done</i>
+                    <i id="clear_Phone" class="material-icons option_to_edit_Phone clear">clear</i>
+                </div>
+            </a>
+
+            <a id="_Bank" class="table_background list-group-item active">
+                <strong>Bank   |   </strong><c>@Html.DisplayFor(modelItem => Model.Bank)</c>
+                <div class="centralize_elements">
+                    <input id="input_Bank" class="_hover_input" />
+                    <i id="done_Bank" class="material-icons option_to_edit_Bank done">done</i>
+                    <i id="clear_Bank" class="material-icons option_to_edit_Bank clear">clear</i>
+                </div>
+            </a>
+
+            <a id="_Agency" class="table_background list-group-item active">
+                <strong>Agency   |   </strong><c>@Html.DisplayFor(modelItem => Model.Agency)</c>
+                <div class="centralize_elements">
+                    <input id="input_Agency" class="_hover_input" />
+                    <i id="done_Agency" class="material-icons option_to_edit_Agency done">done</i>
+                    <i id="clear_Agency" class="material-icons option_to_edit_Agency clear">clear</i>
+                </div>
+            </a>
+
+            <a id="_CurrentAccount" class="table_background list-group-item active">
+                <strong>Current account   |   </strong><c>@Html.DisplayFor(modelItem => Model.CurrentAccount)</c>
+                <div class="centralize_elements">
+                    <input id="input_CurrentAccount" class="_hover_input" />
+                    <i id="done_CurrentAccount" class="material-icons option_to_edit_CurrentAccount done">done</i>
+                    <i id="clear_CurrentAccount" class="material-icons option_to_edit_CurrentAccount clear">clear</i>
+                </div>
+            </a>
+
         </div>
         <div class="list-group profileInfo">
 
-            <i class="tooltip material-icons" title="Prices and costs">attach_money</i>
-
-            <a class="table_background list-group-item active">
+            <ul class="listOfIcons">
+                <li><i class="tooltip big material-icons" title="Prices and costs">attach_money</i></li>
+                <li><i class="tooltip small material-icons" title="Double-click in the row that you would like to edit.">edit</i></li>
+            </ul>
+            
+            <a id="_PricePerHour" class="table_background list-group-item active">
                 <strong>Price per hour   |   </strong><c>R$ @Html.DisplayFor(modelItem => Model.PricePerHour)</c>
+                <div class="centralize_elements">
+                    <input id="input_PricePerHour" class="_hover_input" />
+                    <i id="done_PricePerHour" class="material-icons option_to_edit_PricePerHour done">done</i>
+                    <i id="clear_PricePerHour" class="material-icons option_to_edit_PricePerHour clear">clear</i>
+                </div>
             </a>
-            <a class="table_background list-group-item active">
+            <a id="_GasPrice" class="table_background list-group-item active">
                 <strong>Gas price   |   </strong><c>R$ @Html.DisplayFor(modelItem => Model.GasPrice)</c>
+                <div class="centralize_elements">
+                    <input id="input_GasPrice" class="_hover_input" />
+                    <i id="done_GasPrice" class="material-icons option_to_edit_GasPrice done">done</i>
+                    <i id="clear_GasPrice" class="material-icons option_to_edit_GasPrice clear">clear</i>
+                </div>
             </a>
-            <a class="table_background list-group-item active">
+            <a id="_OvertimeProfitRate" class="table_background list-group-item active">
                 <strong>Overtime profit rate   |   </strong><c>@Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%</c>
+                <div class="centralize_elements">
+                    <input id="input_OvertimeProfitRate" class="_hover_input" />
+                    <i id="done_OvertimeProfitRate" class="material-icons option_to_edit_OvertimeProfitRate done">done</i>
+                    <i id="clear_OvertimeProfitRate" class="material-icons option_to_edit_OvertimeProfitRate clear">clear</i>
+                </div>
             </a>
-            <a class="table_background list-group-item active">
+            <a id="_NormalTime" class="table_background list-group-item active">
                 <strong>Normal Time   |   </strong><c>@Html.DisplayFor(modelItem => Model.NormalTime) h</c>
+                <div class="centralize_elements">
+                    <input id="input_NormalTime" class="_hover_input" />
+                    <i id="done_NormalTime" class="material-icons option_to_edit_NormalTime done">done</i>
+                    <i id="clear_NormalTime" class="material-icons option_to_edit_NormalTime clear">clear</i>
+                </div>
             </a>
-            <a class="table_background list-group-item active">
+            <a id="_TimeToReceiveMealTicket" class="table_background list-group-item active">
                 <strong>Time to receive Meal Ticket   |   </strong><c>@Html.DisplayFor(modelItem => Model.TimeToMealTicket) h</c>
+                <div class="centralize_elements">
+                    <input id="input_TimeToReceiveMealTicket" class="_hover_input" />
+                    <i id="done_TimeToReceiveMealTicket" class="material-icons option_to_edit_TimeToReceiveMealTicket done">done</i>
+                    <i id="clear_TimeToReceiveMealTicket" class="material-icons option_to_edit_TimeToReceiveMealTicket clear">clear</i>
+                </div>
             </a>
-            <a class="table_background list-group-item active">
+            <a id="_MealTicket" class="table_background list-group-item active">
                 <strong>Meal Ticket   |  </strong><c>R$ @Html.DisplayFor(modelItem => Model.MealTicket)</c>
+                <div class="centralize_elements">
+                    <input id="input_MealTicket" class="_hover_input" />
+                    <i id="done_MealTicket" class="material-icons option_to_edit_MealTicket done">done</i>
+                    <i id="clear_MealTicket" class="material-icons option_to_edit_MealTicket clear">clear</i>
+                </div>
             </a>
         </div>
         @*<div class="col-md-offset-11">
