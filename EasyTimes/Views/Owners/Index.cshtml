@@ -1,4 +1,4 @@
-﻿@model EasyTimes.Models.Owner
+﻿@model EasyTimes.Models.ViewModels.EditProfileViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -29,7 +29,7 @@
             <a id="_Email" class="table_background list-group-item active">
                 <strong>Email   |   </strong><c>@Html.DisplayFor(modelItem => Model.Email)</c>
                 <div class="centralize_elements">
-                    <input id="input_Email" class="_hover_input" />
+                    <input id="input_Email" class="_hover_input" type="email" />
                     <i id="done_Email" class="material-icons option_to_edit_Email done">done</i>
                     <i id="clear_Email" class="material-icons option_to_edit_Email clear">clear</i>
                 </div>
@@ -87,14 +87,14 @@
                     <i id="clear_PricePerHour" class="material-icons option_to_edit_PricePerHour clear">clear</i>
                 </div>
             </a>
-            <a id="_GasPrice" class="table_background list-group-item active">
-                <strong>Gas price   |   </strong><c>R$ @Html.DisplayFor(modelItem => Model.GasPrice)</c>
+            @*<a id="_GasPrice" class="table_background list-group-item active">
+                <strong>Autonomy   |   </strong><c>@Html.DisplayFor(modelItem => Model.GasPrice) km / l</c>
                 <div class="centralize_elements">
                     <input id="input_GasPrice" class="_hover_input" />
                     <i id="done_GasPrice" class="material-icons option_to_edit_GasPrice done">done</i>
                     <i id="clear_GasPrice" class="material-icons option_to_edit_GasPrice clear">clear</i>
                 </div>
-            </a>
+            </a>*@
             <a id="_OvertimeProfitRate" class="table_background list-group-item active">
                 <strong>Overtime profit rate   |   </strong><c>@Html.DisplayFor(modelItem => Model.OvertimeProfitRate)%</c>
                 <div class="centralize_elements">
@@ -128,8 +128,5 @@
                 </div>
             </a>
         </div>
-        @*<div class="col-md-offset-11">
-            <a asp-action="Edit" class="btn btn-primary btn-sm">Edit</a>
-        </div>*@
     </div>
 </div>

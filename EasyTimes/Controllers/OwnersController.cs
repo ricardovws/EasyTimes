@@ -28,7 +28,23 @@ namespace EasyTimes.Controllers
         // GET: Owners
         public IActionResult Index()
         {
-           return View(_context.Owner.FirstOrDefault(x => x.Name != null));
+            var profile = new EditProfileViewModel();
+            var owner = _context.Owner.FirstOrDefault(x => x.Name != null);
+            profile.id = owner.id;
+            profile.Name = owner.Name;
+            profile.Email = owner.Email;
+            profile.Phone = owner.Phone;
+            profile.Bank = owner.Bank;
+            profile.Agency = owner.Agency;
+            profile.CurrentAccount = owner.CurrentAccount;
+            profile.PricePerHour = owner.PricePerHour.ToString();
+            profile.GasPrice = owner.GasPrice.ToString();
+            profile.OvertimeProfitRate = owner.OvertimeProfitRate.ToString();
+            profile.NormalTime = owner.NormalTime.ToString();
+            profile.TimeToMealTicket = owner.TimeToMealTicket.ToString();
+            profile.MealTicket = owner.MealTicket.ToString();
+
+            return View(profile);
            
         }
 
@@ -72,117 +88,79 @@ namespace EasyTimes.Controllers
             return View(owner);
         }
 
-        // GET: Owners/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            id = 1;
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var owner = await _context.Owner.FindAsync(id);
-            if (owner == null)
-            {
-                return NotFound();
-            }
-            owner = _context.Owner.FirstOrDefault(x => x.Name != null);
-            EditProfileViewModel viewModel = new EditProfileViewModel();
-            viewModel.id = owner.id;
-            //viewModel.Name = owner.Name;
-            //viewModel.Email = owner.Email;
-            //viewModel.Phone = owner.Phone;
-            //viewModel.Bank = owner.Bank;
-            //viewModel.Agency = owner.Agency;
-            //viewModel.CurrentAccount = owner.CurrentAccount;
-            //
-            //viewModel.PricePerHour = owner.PricePerHour.ToString();
-            //viewModel.GasPrice = owner.GasPrice.ToString();
-            //viewModel.OvertimeProfitRate = owner.OvertimeProfitRate.ToString();
-            //viewModel.NormalTime = owner.NormalTime.ToString();
-            //viewModel.TimeToMealTicket = owner.TimeToMealTicket.ToString();
-            //viewModel.MealTicket = owner.MealTicket.ToString();
-
-            return View(viewModel);
-        }
-
-        // POST: Owners/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, EditProfileViewModel owner)
+        //[ValidateAntiForgeryToken]
+        public void Edit(string infoToEdit, string newInfo)
         {
-            
-            if (id != owner.id)
+            int id = 1;
+            var owner = _context.Owner.First(x => x.id == id);
+
+            var info = infoToEdit.ToString();
+            info = info.Remove(0, 1);
+
+            if (info == "Name")
             {
-                return NotFound();
+                owner.Name = newInfo.ToString();
+            }
+            if (info == "Email")
+            {
+                owner.Email = newInfo.ToString();
+            }
+            if (info == "Phone")
+            {
+                owner.Phone = newInfo.ToString();
+            }
+            if (info == "Bank")
+            {
+                owner.Bank = newInfo.ToString();
+            }
+            if (info == "Agency")
+            {
+                owner.Agency = newInfo;
+            }
+            if (info == "CurrentAccount")
+            {
+                owner.CurrentAccount = newInfo.ToString();
             }
 
-            if (ModelState.IsValid)
-            {   
-            try
-                {
-                    var ownerRefreshed = _context.Owner.First(x => x.id == owner.id);
+            _context.Owner.Update(owner);
+            _context.SaveChanges();
 
-                    var pricePerHour = Convert.ToDouble(owner.PricePerHour, System.Globalization.CultureInfo.InvariantCulture);
-                    if(pricePerHour > 0)
-                    {
-                        ownerRefreshed.PricePerHour = pricePerHour;
-                    }
+            var _newInfo = Convert.ToDouble(newInfo, System.Globalization.CultureInfo.InvariantCulture);
+
+            if (_newInfo > 0)
+            {
+                if (info == "PricePerHour")
+                {
+                    owner.PricePerHour = _newInfo;
+                }
+                if (info == "GasPrice")
+                {
+                    owner.GasPrice = _newInfo;
+                }
+                if (info == "NormalTime")
+                {
+                    owner.NormalTime = _newInfo;
+                }
+                if (info == "TimeToReceiveMealTicket")
+                {
+                    owner.TimeToMealTicket = _newInfo;
+                }
+                if (info == "MealTicket")
+                {
+                    owner.MealTicket = _newInfo;
+                }
+                if (info == "OvertimeProfitRate")
+                {
+                    owner.OvertimeProfitRate = _newInfo;
+                }
+            }
+
+            _context.Owner.Update(owner);
+            _context.SaveChanges();
                  
-                    var gasPrice = Convert.ToDouble(owner.GasPrice, System.Globalization.CultureInfo.InvariantCulture);
-                    if (gasPrice > 0)
-                    {
-                        ownerRefreshed.GasPrice = gasPrice;
-                    }
-
-
-                    var normalTime= Convert.ToDouble(owner.NormalTime, System.Globalization.CultureInfo.InvariantCulture);
-                    if (normalTime > 0)
-                    {
-                        ownerRefreshed.NormalTime = normalTime;
-                    }
-
-
-                    var timeToMealTicket = Convert.ToDouble(owner.TimeToMealTicket, System.Globalization.CultureInfo.InvariantCulture);
-                    if (timeToMealTicket > 0)
-                    {
-                        ownerRefreshed.TimeToMealTicket = timeToMealTicket;
-                    }
-
-
-                    var mealTicket = Convert.ToDouble(owner.MealTicket, System.Globalization.CultureInfo.InvariantCulture);
-                    if (mealTicket > 0)
-                    {
-                        ownerRefreshed.MealTicket = mealTicket;
-                    }
-
-
-                    var overtimeProfitRate = Convert.ToDouble(owner.OvertimeProfitRate, System.Globalization.CultureInfo.InvariantCulture);
-                    if (overtimeProfitRate > 0)
-                    {
-                        ownerRefreshed.OvertimeProfitRate = overtimeProfitRate;
-                    }
-
-
-                    _context.Update(ownerRefreshed);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OwnerExists(owner.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(owner);
         }
 
         // GET: Owners/Delete/5

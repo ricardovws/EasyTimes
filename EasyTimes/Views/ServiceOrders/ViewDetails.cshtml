@@ -3,7 +3,7 @@
     ViewData["Title"] = "ViewDetails";
 }
 
-<h2>@Html.DisplayFor(modelItem => Model.ProjectName) - @Html.DisplayFor(modelItem => Model.SerialCode) </h2>
+<h2 class="serviceOrderTitle">@Html.DisplayFor(modelItem => Model.ProjectName) - @Html.DisplayFor(modelItem => Model.SerialCode) </h2>
 <div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label" for="kM">On the ranch (km)</label>
+                            <label class="control-label" for="kM">Money spent with gas (R$)</label>
                             <input type="text" class="form-control" name="kM">
                         </div>
                     </div>
@@ -56,7 +56,7 @@
 
 </div>
 
-<p class="text-primary">@Model.Comments</p>
+<p class="serviceOrderTitle">@Model.Comments</p>
 
 <div>
     <div class="table_background">
@@ -70,10 +70,12 @@
             </li>
             <li><a href="#">Time worked <span class="badge">@Model.AmountOfHours h</span></a></li>
             <li><a href="#">Overtime worked <span class="badge">@Model.Overtime h</span></a></li>
-            <li><a href="#">Total run <span class="badge">@Model.OnTheRach km</span></a></li>
+            <li><a href="#">Total spent with gas <span class="badge">R$ @Model.OnTheRach</span></a></li>
             <li><a href="#">Meal ticket <span class="badge"> R$ @Model.MealTicketValue</span></a></li>
         </ul>
     </div>
+
+    <hr />
   
     <a asp-action="ShowListOfDays" asp-route-id="@Model.id" class="btn btn-info">See all!</a> 
     <a asp-action="ExportFileToPrint" asp-route-id="@Model.id" class="btn btn-info">Export file to print!</a>

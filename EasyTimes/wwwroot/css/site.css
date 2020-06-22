@@ -78,7 +78,7 @@ c {
     display: none;
 }
 
-.listOfClients {
+.listOfClients, .serviceOrderTitle, .serviceOrderTitle {
     color: white;
 }
 

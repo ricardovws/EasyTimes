@@ -14,7 +14,7 @@ namespace EasyTimes.Models
         public string Phone { get; set; }
         //Banking account data:
         public string Bank { get; set; }
-        public int Agency { get; set; }
+        public string Agency { get; set; }
         public string CurrentAccount { get; set; }
         //Prices and Costs
         public double PricePerHour { get; set; } //How much you earn per hour

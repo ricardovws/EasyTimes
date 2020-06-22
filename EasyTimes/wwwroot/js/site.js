@@ -67,7 +67,12 @@ function callInput(element) {
 $(".done").click(function () {
 
     var param = GetId($(this));
+    
+    var url = "/Owners/Edit";
+    var newInfo = $(param1 + param).val();
+    $.post(url, { infoToEdit: param, newInfo: newInfo });
     RefreshCss(param);
+    setTimeout(function () { location.reload(); }, 1000);
 });
 //to clear edition
 $(".clear").click(function () {

@@ -112,7 +112,8 @@ namespace EasyTimes.Services
             order.TotalEarned += order.Overtime * owner.PricePerHour;
             var profitRate = owner.OvertimeProfitRate / 100;
             order.TotalEarned += order.Overtime * owner.PricePerHour * profitRate;
-            order.TotalEarned += order.OnTheRach * owner.GasPrice;
+            //order.TotalEarned += order.OnTheRach * owner.GasPrice;
+            order.TotalEarned += order.OnTheRach;
             ///////////////// até aqui
 
             _context.Update(order);
